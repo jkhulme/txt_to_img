@@ -13,8 +13,8 @@ class Crawler():
         self.connection = httplib.HTTPConnection(self.base)
         page = self.get_query(search)
         pic_link = self.get_pic(page)
-        print pic_link
-        urllib.urlretrieve(pic_link, self.query_term+'.jpg')
+        self.file_ext = '.' + pic_link.split('.')[-1]
+        urllib.urlretrieve(pic_link, self.query_term+self.file_ext)
         self.write_html()
 
     def get_page(self, path):
@@ -41,7 +41,7 @@ class Crawler():
                     '<script src="speakClient.js"></script>' +
                     '</head>' +
                     '<body>' +
-                    '<img src="'+self.query_term+'.jpg"><br><h3>' + self.query_term + '</h3>' +
+                    '<img src="'+self.query_term+self.file_ext+'"><br><h3>' + self.query_term + '</h3>' +
                     '<button onclick="speak(\'' + self.query_term + '\')">Talk</button>' +
                     '<div id="audio"></div>' +
                     '</body>' +
