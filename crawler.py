@@ -36,7 +36,16 @@ class Crawler():
 
     def write_html(self):
         with open('index.html', 'w') as f:
-            f.write('<img src="'+self.query_term+'.jpg"><br><h3>'+self.query_term+'</h3>')
+            f.write('<html>' +
+                    '<head>' +
+                    '<script src="speakClient.js"></script>' +
+                    '</head>' +
+                    '<body>' +
+                    '<img src="'+self.query_term+'.jpg"><br><h3>' + self.query_term + '</h3>' +
+                    '<button onclick="speak(\'' + self.query_term + '\')">Talk</button>' +
+                    '<div id="audio"></div>' +
+                    '</body>' +
+                    '</html>')
 
 
 if __name__ == "__main__":
